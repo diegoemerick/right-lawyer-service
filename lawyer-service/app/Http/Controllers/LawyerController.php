@@ -16,16 +16,30 @@ class LawyerController extends Controller
 
     public function create(Request $request)
     {
+        if ($request->get('form')) {
+            $lawyer = $this->lawyerService->create($request->get('form'));
+            return $lawyer;
+        }
+        return null;
+    }
+
+    public function update(Request $request, $id)
+    {
 
     }
 
-    public function save(Request $request)
+    public function delete($id)
     {
 
+    }
+
+    public function get($id)
+    {
+        return $this->lawyerService->get($id);
     }
 
     public function index()
     {
-        $this->lawyerService->index();
+        return $this->lawyerService->index();
     }
 }

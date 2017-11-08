@@ -13,8 +13,30 @@ class LawyerService
         $this->repository = $repository;
     }
 
+    public function create($lawyer)
+    {
+        try {
+            return $this->repository->create($lawyer);
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
     public function index()
     {
-        $this->repository->index();
+        try {
+            return $this->repository->index();
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    public function get($id)
+    {
+        try {
+            return $this->repository->get($id);
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 }
