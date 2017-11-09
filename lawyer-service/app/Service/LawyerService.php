@@ -3,11 +3,17 @@
 namespace App\Service;
 
 use App\Infrasctructure\Repository\LawyerRepository;
+use App\Model\Lawyer;
+use Validator;
 
 class LawyerService
 {
     private $repository;
 
+    /**
+     * LawyerService constructor.
+     * @param LawyerRepository $repository
+     */
     public function __construct(LawyerRepository $repository)
     {
         $this->repository = $repository;
@@ -16,7 +22,25 @@ class LawyerService
     public function create($lawyer)
     {
         try {
+
+            $valid = Validator::make(
+                $lawyer,
+                Lawyer::RULES);
+
+            if ($valid->fails()) {
+                throw new \Exception($valid->errors());
+            }
             return $this->repository->create($lawyer);
+
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    public function update($lawyer, $id)
+    {
+        try {
+            return $this->repository->update($lawyer, $id);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
@@ -35,6 +59,15 @@ class LawyerService
     {
         try {
             return $this->repository->get($id);
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            return $this->repository->delete($id);
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }

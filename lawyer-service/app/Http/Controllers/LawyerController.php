@@ -25,12 +25,12 @@ class LawyerController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        return $this->lawyerService->update($request->get('form'), $id);
     }
 
     public function delete($id)
     {
-
+        return $this->lawyerService->delete($id);
     }
 
     public function get($id)

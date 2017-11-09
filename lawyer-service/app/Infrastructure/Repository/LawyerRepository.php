@@ -15,6 +15,23 @@ class LawyerRepository
         return Lawyer::create($lawyer);
     }
 
+    public function update($lawyer, $id)
+    {
+        $find = $this->get($id);
+        $find->name = $lawyer['name'];
+        $find->phone = $lawyer['phone'];
+        $find->mail = $lawyer['mail'];
+        $find->document = $lawyer['document'];
+        $find->save();
+
+        return $find;
+    }
+
+    public function delete($id)
+    {
+        return Lawyer::destroy($id);
+    }
+
     /**
      * @return mixed
      */
