@@ -22,7 +22,7 @@ class CreateLawyersTable extends Migration
             $table->text('phone');
             $table->text('mail');
             $table->text('document');
-            $table->softDeletes('deleted');
+            $table->softDeletes('deleted_at');
             $table->timestamps();
         });
     }
