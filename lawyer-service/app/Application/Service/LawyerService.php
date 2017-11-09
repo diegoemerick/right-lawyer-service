@@ -2,11 +2,12 @@
 
 namespace App\Service;
 
+use App\Domain\Service\LawerServiceInterface;
 use App\Infrasctructure\Repository\LawyerRepository;
 use App\Model\Lawyer;
 use Validator;
 
-class LawyerService
+class LawyerService implements LawerServiceInterface
 {
     private $repository;
 

@@ -2,14 +2,11 @@
 
 namespace App\Infrasctructure\Repository;
 
+use App\Domain\Repository\LawyerRepositoryInterface;
 use App\Model\Lawyer;
 
-class LawyerRepository
+class LawyerRepository implements LawyerRepositoryInterface
 {
-    /**
-     * @param $lawyer
-     * @return mixed
-     */
     public function create($lawyer)
     {
         return Lawyer::create($lawyer);
@@ -32,18 +29,11 @@ class LawyerRepository
         return Lawyer::destroy($id);
     }
 
-    /**
-     * @return mixed
-     */
     public function index()
     {
         return Lawyer::orderBy('id', 'desc')->get();
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
     public function get($id)
     {
         return Lawyer::find($id);
